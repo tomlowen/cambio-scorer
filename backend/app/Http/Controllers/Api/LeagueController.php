@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Score;
+use App\Models\League;
 use Illuminate\Http\Request;
 
-class ScoreController extends Controller
+class LeagueController extends Api
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ScoreController extends Controller
      */
     public function index()
     {
-        //
+        return League::get();
     }
 
     /**
@@ -41,10 +41,10 @@ class ScoreController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Score  $score
+     * @param  \App\Models\League  $league
      * @return \Illuminate\Http\Response
      */
-    public function show(Score $score)
+    public function show(League $league)
     {
         //
     }
@@ -52,10 +52,10 @@ class ScoreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Score  $score
+     * @param  \App\Models\League  $league
      * @return \Illuminate\Http\Response
      */
-    public function edit(Score $score)
+    public function edit(League $league)
     {
         //
     }
@@ -64,10 +64,10 @@ class ScoreController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Score  $score
+     * @param  \App\Models\League  $league
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Score $score)
+    public function update(Request $request, League $league)
     {
         //
     }
@@ -75,10 +75,10 @@ class ScoreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Score  $score
+     * @param  \App\Models\League  $league
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Score $score)
+    public function destroy(League $league)
     {
         //
     }

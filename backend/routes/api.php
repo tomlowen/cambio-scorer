@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('v1')->name('api.')->namespace('Api')->group(function () {
+  Route::apiResource('leagues', 'LeagueController');
+  Route::apiResource('games', 'GameController');
+  Route::apiResource('scores', 'ScoreController');
+});

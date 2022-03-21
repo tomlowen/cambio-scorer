@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\League;
+use App\Models\Score;
 use Illuminate\Http\Request;
 
-class LeagueController extends Controller
+class ScoreController extends Api
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class LeagueController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\League  $league
+     * @param  \App\Models\Score  $score
      * @return \Illuminate\Http\Response
      */
-    public function show(League $league)
+    public function show(Score $score)
     {
         //
     }
@@ -52,10 +52,10 @@ class LeagueController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\League  $league
+     * @param  \App\Models\Score  $score
      * @return \Illuminate\Http\Response
      */
-    public function edit(League $league)
+    public function edit(Score $score)
     {
         //
     }
@@ -64,10 +64,10 @@ class LeagueController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\League  $league
+     * @param  \App\Models\Score  $score
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, League $league)
+    public function update(Request $request, Score $score)
     {
         //
     }
@@ -75,10 +75,10 @@ class LeagueController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\League  $league
+     * @param  \App\Models\Score  $score
      * @return \Illuminate\Http\Response
      */
-    public function destroy(League $league)
+    public function destroy(Score $score)
     {
         //
     }
