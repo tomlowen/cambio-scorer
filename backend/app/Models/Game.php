@@ -16,6 +16,7 @@ class Game extends Model
      */
     protected $fillable = [
       'game_type',
+      'league_id',
       'participants',
       'rounds',
       'is_50_reached',
@@ -33,9 +34,10 @@ class Game extends Model
     /**
      * Get the game's scores.
      */
-    public function score()
+    public function scores()
     {
-      return $this->morphOne(Score::class, 'scoreable');
+      ///this doesn't seem to work!!!!
+      return $this->morphMany(Score::class, 'scoreable');
     }
 
 

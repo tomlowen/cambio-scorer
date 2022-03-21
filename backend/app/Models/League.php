@@ -31,7 +31,9 @@ class League extends Model
     /**
      * Get the league's scores.
      */
-    public function score() {
-      return $this->morphOne(Score::class, 'scoreable');
+    public function scores()
+    {
+      ///this doesn't seem to work!!!!
+      return $this->morphMany(Score::class, 'scoreable');
     }
 }

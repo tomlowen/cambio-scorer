@@ -17,14 +17,15 @@ class Score extends Model
     protected $fillable = [
       'score',
       'player_name',
-      'score_type',
-      'score_id',
+      'scoreable_type',
+      'scoreable_id',
   ];
 
     /**
      * Get the parent scoreable model (game or league).
      */
-    public function scoreable() {
+    public function scoreable()
+    {
       return $this->morphTo();
     }
 }

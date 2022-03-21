@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('player_name');
             $table->integer('score');
-            $table->morphs('score');
+            $table->morphs('scoreable');
             $table->timestamps();
         });
     }
