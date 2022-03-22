@@ -1,23 +1,42 @@
 <template>
   <div>
-    <div :v-for="player in players">
-      <label>Player {{playerNumber}} name</label>
-      <input type="text">
+    <div v-for="(player, index) in players" v-bind:key="index">
+      <label>Player {{index + 1}} name</label>
+      <input type="text" :value="player.name" @change="rename({$event, index})">
+      <button @click="removePlayer(index)">Remove player</button>
+    </div>
+      <button @click="addPlayer">Add player</button>
+    <div>
+      <button @click="updateRounds(rounds - 1)">-</button>
+      <p>{{ rounds }}</p>
+      <button @click="updateRounds(rounds + 1)">+</button>
     </div>
     <div>
-      <button>{{rounds}}</button>
-      <input>
-      <button>+</button>
+      <button>Start scoring</button>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
 
 export default {
+
   computed: {
-    ...mapGetters(['rounds'])
+    ...mapGetters([
+      'rounds',
+      'players'
+    ])
+  },
+
+  methods: {
+    ...mapActions([
+      'updateRounds',
+      'removePlayer',
+      'addPlayer',
+      'rename',
+    ])
   }
+
 };
 </script>

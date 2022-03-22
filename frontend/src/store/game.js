@@ -1,21 +1,35 @@
-export const state = () => ({
+const state = () => ({
   rounds: 5,
 })
 
-export const actions = {
-  update({commit}, rounds) {
-    commit('SET', rounds)
+const actions = {
+  updateRounds({commit}, rounds) {
+    if(typeof rounds === "number") {
+      commit('SET', rounds);
+    } else {
+      commit('SET', 0);
+    }
   }
+
+  
+
 }
 
-export const mutations = {
+const mutations = {
   SET(state, rounds) {
     state.rounds = rounds;
   }
 }
 
-export const getters = {
+const getters = {
   rounds: (state) => {
     return state.rounds;
   }
+}
+
+export default {
+  state,
+  actions,
+  mutations,
+  getters,
 }

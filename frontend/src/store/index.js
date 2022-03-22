@@ -1,11 +1,10 @@
-import { Vue } from 'vue';
-import { Vuex } from 'vuex';
+import { createStore } from 'vuex'
 import game from './game';
+import players from './players';
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default createStore({
   modules: {
-    game
+    game,
+    players,
   }
 })
