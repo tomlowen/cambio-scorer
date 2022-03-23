@@ -1,20 +1,10 @@
+import PlayerModel from '../util/models/playerModel'
+
 const state = () => (
   {
     players : [
-      {
-          name: null,
-          roundScore: 0,
-          gameScore: 0,
-          leagueScore: 0,
-          dealer: false,
-      },
-      {
-          name: null,
-          roundScore: 0,
-          gameScore: 0,
-          leagueScore: 0,
-          dealer: false,
-      }
+      new PlayerModel,
+      new PlayerModel,
     ]
   }
 )
@@ -35,13 +25,7 @@ const mutations = {
 
   ADD_PLAYER(state) {
     state.players = [...state.players,
-      {
-          name: null,
-          roundScore: 0,
-          gameScore: 0,
-          leagueScore: 0,
-          dealer: false,
-      }
+      new PlayerModel,
     ];
   },
 

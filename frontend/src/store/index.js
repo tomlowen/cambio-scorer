@@ -1,8 +1,8 @@
-import { createStore } from 'vuex'
+import Vuex from 'vuex'
 import game from './game';
 import players from './players';
 
-export default createStore({
+export default new Vuex.Store({
   modules: {
     game,
     players,

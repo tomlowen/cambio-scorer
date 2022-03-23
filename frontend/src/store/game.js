@@ -3,15 +3,13 @@ const state = () => ({
 })
 
 const actions = {
-  updateRounds({commit}, rounds) {
-    if(typeof rounds === "number") {
-      commit('SET', rounds);
-    } else {
-      commit('SET', 0);
-    }
-  }
 
-  
+  updateRounds({commit}, rounds) {
+      commit('SET', rounds);
+  },
+
+  initiateGame() {
+  },
 
 }
 
