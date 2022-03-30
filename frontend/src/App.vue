@@ -2,7 +2,6 @@
   <div class="container">
     <h1>Cambio scorer</h1>
     <start-page></start-page>
-    <score-page></score-page>
   </div>
 </template>
 

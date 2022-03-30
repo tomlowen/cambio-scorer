@@ -1,36 +1,67 @@
 <template>
   <div>
-    <div v-for="(player, index) in players" v-bind:key="index">
-      <label>Player {{index + 1}} name</label>
+    <b-card bg-variant="light">
+      <b-form @submit="handleSubmit">
+        <b-form-group id="player-inputs">
+          <div v-for="(player, index) in players" v-bind:key="index">
+            <div class="d-flex justify-content-between mb-3">
+              <b-form-input
+                class="pr-3"
+                type="text"
+                :placeholder="'Player ' + (index + 1) + ' name'"
+                :value="player.name"
+                @change="rename({$event, index})"
+              ></b-form-input>
 
-      <input type="text" :value="player.name" @change="rename({$event, index})">
+              <b-button
+                variant="danger"
+                @click="removePlayer(index)">
+              -
+              </b-button>
+            </div>
+          </div>
 
-      <button @click="removePlayer(index)">Remove player</button>
-    </div>
+          <b-button
+            variant="success"
+            @click="addPlayer"
+          >
+          Add player
+          </b-button>
+        </b-form-group>
 
-    <button @click="addPlayer">Add player</button>
+        <b-form-group id="round-inputs">
+          <div class="d-flex justify-content-around">
+            <b-button
+              variant="outline-secondary"
+              :disabled="rounds === this.$constants.minRounds"
+              @click="updateRounds(rounds - 1)"
+            >
+            -
+            </b-button>
 
-    <div>
-      <button
-        :disabled="rounds === this.$constants.minRounds"
-        @click="updateRounds(rounds - 1)"
-      >
-      -
-      </button>
+            <p>{{ rounds }} round{{rounds === 1 ? '' : 's'}}</p>
 
-      <p>{{ rounds }}</p>
+            <b-button
+              variant="outline-secondary"
+              :disabled="rounds === this.$constants.maxRounds"
+              @click="updateRounds(rounds + 1)"
+            >
+            +
+            </b-button>
+          </div>
+        </b-form-group>
 
-      <button
-        :disabled="rounds === this.$constants.maxRounds"
-        @click="updateRounds(rounds + 1)"
-      >
-      +
-      </button>
-    </div>
-
-    <div>
-      <button>Start scoring</button>
-    </div>
+        <div class="d-grid gap-2">
+          <b-button
+            block
+            type="submit"
+            variant="primary"
+          >
+          Start scoring
+          </b-button>
+        </div>
+      </b-form>
+    </b-card>
   </div>
 </template>
 
@@ -38,9 +69,8 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  components: { ScoresTable },
   inject:
-    ['$constants'],
+    ['$constants', '$helpers'],
 
   computed: {
     ...mapGetters([
@@ -55,7 +85,12 @@ export default {
       'removePlayer',
       'addPlayer',
       'rename',
-    ])
+    ]),
+
+    handleSubmit() {
+      console.log('start game');
+      //start the game
+    }
   }
 
 };
