@@ -31,7 +31,6 @@
     <div>
       <button>Start scoring</button>
     </div>
-
   </div>
 </template>
 
@@ -39,6 +38,7 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+  components: { ScoresTable },
   inject:
     ['$constants'],
 
