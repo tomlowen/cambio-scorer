@@ -1,10 +1,9 @@
 <template>
-
+  <scores-table></scores-table>
 </template>
 
 <script>
 import ScoresTable from '../components/ScoresTable.vue';
-
 
 export default {
   components: {
