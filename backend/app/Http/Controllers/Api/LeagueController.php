@@ -15,7 +15,7 @@ class LeagueController extends Api
      */
     public function index()
     {
-        return League::get();
+        return League::with('scores')->get();
     }
 
     /**
@@ -45,7 +45,9 @@ class LeagueController extends Api
      */
     public function show(League $league)
     {
-        return League::where('id', $league->id)->first();
+
+      dd(League::where('id', $league->id)->first()->scores()->getBindings());
+      return League::with('scores')->where('id', $league->id)->first();
     }
 
     /**
