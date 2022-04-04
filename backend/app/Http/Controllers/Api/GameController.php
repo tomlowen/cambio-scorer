@@ -40,14 +40,14 @@ class GameController extends Api
     }
 
     /**
-     * Display the specified resource.
+     * Complete the game.
      *
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function complete(Request $request)
     {
-      return Game::with('scores')->where('id', $game->id)->first();
+      return Game::where('id', $request->id)->update(['is_complete' => true]);
     }
 
     //endpoint for when 50 is reached

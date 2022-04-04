@@ -56,9 +56,6 @@ class LeagueController extends Api
      */
     public function complete(Request $request)
     {
-      $league = League::where('id', $request->id)->first();
-      $league->update(['is_complete' => true]);
-
-      return $league;
+      return League::where('id', $request->id)->update(['is_complete' => true]);
     }
 }
