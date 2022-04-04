@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\League;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LeagueController extends Api
 {
@@ -18,16 +19,6 @@ class LeagueController extends Api
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -35,7 +26,15 @@ class LeagueController extends Api
      */
     public function store(Request $request)
     {
-        //
+      if(League::where('participants', $request->participants)->exists()) {
+        return League::where('participants', $request->participants)->first();
+      }
+
+      $league = new League;
+      $league->participants = $request->participants;
+      $league->save();
+
+      return $league;
     }
 
     /**
@@ -46,31 +45,9 @@ class LeagueController extends Api
      */
     public function show(League $league)
     {
-        //
+        return League::where('id', $league->id)->first();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\League  $league
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(League $league)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\League  $league
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, League $league)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -81,5 +58,20 @@ class LeagueController extends Api
     public function destroy(League $league)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\League  $league
+     * @return \Illuminate\Http\Response
+     */
+    public function complete(Request $request)
+    {
+      $league = League::where('id', $request->id)->first();
+      $league->is_complete = 1;
+      $league->save();
+
+      return $league;
     }
 }

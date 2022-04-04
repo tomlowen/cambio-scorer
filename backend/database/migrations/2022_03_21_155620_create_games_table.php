@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->foreignId('league_id')->constrained();
-            $table->string('game_type');
+            $table->string('game_type')->default('cambio');
             $table->string('participants');
             $table->smallInteger('rounds');
-            $table->boolean('is_50_reached');
-            $table->boolean('is_complete');
+            $table->boolean('is_50_reached')->default('0');
+            $table->boolean('is_complete')->default('0');
             $table->timestamps();
         });
     }

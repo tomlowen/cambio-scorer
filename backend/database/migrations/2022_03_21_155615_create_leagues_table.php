@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('leagues', function (Blueprint $table) {
           $table->id();
-          $table->string('game_type');
+          $table->string('game_type')->default('cambio');
           $table->string('participants');
-          $table->boolean('is_complete');
+          $table->boolean('is_complete')->default('0');
           $table->timestamps();
         });
     }
