@@ -14,7 +14,7 @@ class GameController extends Api
      */
     public function index()
     {
-        return Game::get();
+        return Game::with('scores')->get();
     }
 
     /**
@@ -47,7 +47,7 @@ class GameController extends Api
      */
     public function show(Game $game)
     {
-      return Game::where('id', $game->id)->first();
+      return Game::with('scores')->where('id', $game->id)->first();
     }
 
     //endpoint for when 50 is reached

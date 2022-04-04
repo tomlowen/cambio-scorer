@@ -28,8 +28,8 @@ class LeagueController extends Api
     {
       $league = League::where('participants', $request->participants);
 
-      if($league->exists()) {
-        return $league->first();
+      if($league->exists() && !$league->is_complete) {
+        return $league->with('scores')->first();
       }
 
       $newLeague = League::create(['participants' => $request->participants]);
@@ -45,8 +45,6 @@ class LeagueController extends Api
      */
     public function show(League $league)
     {
-
-      dd(League::where('id', $league->id)->first()->scores()->getBindings());
       return League::with('scores')->where('id', $league->id)->first();
     }
 
