@@ -19,6 +19,7 @@ class Game extends Model
       'league_id',
       'participants',
       'rounds',
+      'current_round',
       'is_50_reached',
       'is_complete',
     ];
@@ -36,7 +37,6 @@ class Game extends Model
      */
     public function scores()
     {
-      ///this doesn't seem to work!!!!
       return $this->morphMany(Score::class, 'scoreable');
     }
 

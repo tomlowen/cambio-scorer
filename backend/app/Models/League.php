@@ -33,7 +33,6 @@ class League extends Model
      */
     public function scores()
     {
-      ///this doesn't seem to work!!!!
       return $this->morphMany(Score::class, 'scoreable');
     }
 }
