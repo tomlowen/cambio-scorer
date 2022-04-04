@@ -2,40 +2,36 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\League;
 use App\Models\Score;
 use Illuminate\Http\Request;
 
-class ScoreController extends Api
+class LeagueScoreController extends Api
 {
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Models\League  $league
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(League $league)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+      return Score::query()
+        ->where('scoreable_type', 'league')
+        ->where('scoreable_id', $league->id)
+        ->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \App\Models\League  $league
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(League $league, Request $request)
     {
-        //
+        dd($league);
     }
 
     /**
@@ -45,17 +41,6 @@ class ScoreController extends Api
      * @return \Illuminate\Http\Response
      */
     public function show(Score $score)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Score  $score
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Score $score)
     {
         //
     }

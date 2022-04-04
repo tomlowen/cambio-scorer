@@ -22,6 +22,7 @@ Route::prefix('v1')->name('api.')->namespace('Api')->group(function () {
   Route::apiResources([
     'leagues' => 'LeagueController',
     'games' => 'GameController',
-    'scores' => 'ScoreController',
   ]);
+  Route::apiResource('leagues.scores', 'LeagueScoreController')->scoped();
+  Route::apiResource('games.scores', 'GameScoreController')->scoped();
 });
