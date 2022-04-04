@@ -61,7 +61,7 @@ class LeagueController extends Api
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Complete the league.
      *
      * @param  \App\Models\League  $league
      * @return \Illuminate\Http\Response

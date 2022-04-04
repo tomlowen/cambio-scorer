@@ -14,17 +14,7 @@ class GameController extends Api
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Game::get();
     }
 
     /**
@@ -35,7 +25,12 @@ class GameController extends Api
      */
     public function store(Request $request)
     {
-        //
+      $game = new Game;
+      $game->league_id = $request->league_id;
+      $game->rounds = $request->rounds;
+      $game->save();
+
+      return $game;
     }
 
     /**
@@ -46,30 +41,7 @@ class GameController extends Api
      */
     public function show(Game $game)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Game $game)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Game $game)
-    {
-        //
+      return Game::where('id', $game->id)->first();
     }
 
     /**
