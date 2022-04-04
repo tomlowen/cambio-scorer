@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\League::factory(5)->create();
         \App\Models\Game::factory(10)->create();
+        \App\Models\Round::factory(30)->create();
         \App\Models\Score::factory(20)->create();
     }
 }

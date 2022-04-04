@@ -26,15 +26,15 @@ class LeagueController extends Api
      */
     public function store(Request $request)
     {
-      if(League::where('participants', $request->participants)->exists()) {
-        return League::where('participants', $request->participants)->first();
+      $league = League::where('participants', $request->participants);
+
+      if($league->exists()) {
+        return $league->first();
       }
 
-      $league = new League;
-      $league->participants = $request->participants;
-      $league->save();
+      $newLeague = League::create(['participants' => $request->participants]);
 
-      return $league;
+      return $newLeague;
     }
 
     /**
@@ -48,18 +48,6 @@ class LeagueController extends Api
         return League::where('id', $league->id)->first();
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\League  $league
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(League $league)
-    {
-        //
-    }
-
     /**
      * Complete the league.
      *
@@ -69,8 +57,7 @@ class LeagueController extends Api
     public function complete(Request $request)
     {
       $league = League::where('id', $request->id)->first();
-      $league->is_complete = 1;
-      $league->save();
+      $league->update(['is_complete' => true]);
 
       return $league;
     }

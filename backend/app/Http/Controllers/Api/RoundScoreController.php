@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Game;
+use App\Models\Round;
 use App\Models\Score;
 use Illuminate\Http\Request;
 
-class GameScoreController extends Api
+class RoundScoreController extends Api
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Models\Game  $game
+     * @param  \App\Models\Round  $league
      * @return \Illuminate\Http\Response
      */
-    public function index(Game $game)
+    public function index(Round $round)
     {
+      dd($request);
       return Score::query()
-        ->where('scoreable_type', 'game')
-        ->where('scoreable_id', $game->id)
+        ->where('scoreable_type', 'round')
+        ->where('scoreable_id', $round->id)
         ->get();
     }
 
@@ -28,31 +29,19 @@ class GameScoreController extends Api
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Round $round)
     {
-        $score = new Score;
-    }
+      //create a new round for the game
+      $round = Round::create(['game_id' => $request->game_id]);
+      //for each person in the request
+      
+        //save their score for the round.
+        //update their game score (if 50 hit then take this into account)
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Score  $score
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Score $score)
-    {
-        //
-    }
+      //if the game rounds = the number of rounds associated with the game
+        //complete the game
+      $request
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Score  $score
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Score $score)
-    {
-        //
     }
 
     /**

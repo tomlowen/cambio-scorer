@@ -25,10 +25,16 @@ class GameController extends Api
      */
     public function store(Request $request)
     {
-      $game = new Game;
-      $game->league_id = $request->league_id;
-      $game->rounds = $request->rounds;
-      $game->save();
+      $lastGame = Game::where('league_id', $request->league_id)->latest()->first();
+      if($lastGame && !$lastGame->is_complete) {
+
+        return $lastGame;
+      }
+
+      $game = Game::create([
+        'league_id' => $request->league_id,
+        'rounds' => $request->rounds,
+      ]);
 
       return $game;
     }
@@ -44,14 +50,6 @@ class GameController extends Api
       return Game::where('id', $game->id)->first();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Game $game)
-    {
-        //
-    }
+    //endpoint for when 50 is reached
+
 }
