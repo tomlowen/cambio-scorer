@@ -49,7 +49,10 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        }
+        },
+        "heroku": {
+          "document-root": "backend"
+      }
     },
     "config": {
         "optimize-autoloader": true,
