@@ -56,7 +56,6 @@
             block
             type="submit"
             variant="primary"
-            @click="handleSubmit"
           >
           Start scoring
           </b-button>
@@ -90,7 +89,7 @@ export default {
     ]),
 
     handleSubmit() {
-      console.log('start game');
+      console.log(this.players[0])
       this.createNewLeague(this.players);
       //move to new page
       //get game
