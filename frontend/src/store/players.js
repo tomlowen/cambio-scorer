@@ -18,6 +18,18 @@ const actions = {
   },
   rename({commit}, payload) {
     commit('RENAME', payload);
+  },
+  updateGameScore(context, scores) {
+    //make post request
+    // await axios
+    //   .post('https://cambio-scorer-backend.herokuapp.com/api/v1/rounds', {
+    //     params: {
+    //       game_id: context.rootGetters.game.id
+    //     },
+    //   })
+    //   .then(response => console.log(response))
+
+    // context.commit('SET', rounds);
   }
 }
 

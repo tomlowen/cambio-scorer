@@ -1,7 +1,7 @@
 <template>
       <b-tabs content-class="mt-3">
       <b-tab title="Scores" active>
-
+        <scores-table></scores-table>
       </b-tab>
       <b-tab title="Leagues"><league-table></league-table></b-tab>
       <b-tab title="Rules"><rules></rules></b-tab>
