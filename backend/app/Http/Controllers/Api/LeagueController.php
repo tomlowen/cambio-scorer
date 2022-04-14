@@ -26,15 +26,13 @@ class LeagueController extends Api
      */
     public function store(Request $request)
     {
-      $league = League::where('participants', $request->participants);
+      $league = League::where('participants', $request->input('participants'));
 
-      if($league->exists() && !$league->is_complete) {
-        return $league->with('scores')->first();
+      if(!$league->exists() || !$league->where('completed_at', null)->exists()) {
+        League::create(['participants' => $request->input('participants')]);
       }
 
-      $newLeague = League::create(['participants' => $request->participants]);
-
-      return $newLeague;
+      return $league->with(['games', 'scores'])->get();
     }
 
     /**
@@ -45,7 +43,7 @@ class LeagueController extends Api
      */
     public function show(League $league)
     {
-      return League::with('scores')->where('id', $league->id)->first();
+      return League::with(['games', 'scores'])->where('id', $league->id)->first();
     }
 
     /**

@@ -17,7 +17,7 @@ return new class extends Migration
           $table->id();
           $table->string('game_type')->default('cambio');
           $table->string('participants');
-          $table->boolean('is_complete')->default('0');
+          $table->timestamp('completed_at')->nullable();
           $table->timestamps();
         });
     }

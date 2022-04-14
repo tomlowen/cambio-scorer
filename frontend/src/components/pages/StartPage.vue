@@ -10,7 +10,7 @@
                 type="text"
                 :placeholder="'Player ' + (index + 1) + ' name'"
                 :value="player.name"
-                @change="rename({$event, index})"
+                @input="rename({$event, index})"
               ></b-form-input>
 
               <b-button
@@ -33,18 +33,18 @@
           <div class="d-flex justify-content-around">
             <b-button
               variant="outline-secondary"
-              :disabled="rounds === this.$constants.minRounds"
-              @click="updateRounds(rounds - 1)"
+              :disabled="game.rounds === this.$constants.minRounds"
+              @click="updateRounds(game.rounds - 1)"
             >
             -
             </b-button>
 
-            <p>{{ rounds }} round{{rounds === 1 ? '' : 's'}}</p>
+            <p>{{ game.rounds }} round{{game.rounds === 1 ? '' : 's'}}</p>
 
             <b-button
               variant="outline-secondary"
-              :disabled="rounds === this.$constants.maxRounds"
-              @click="updateRounds(rounds + 1)"
+              :disabled="game.rounds === this.$constants.maxRounds"
+              @click="updateRounds(game.rounds + 1)"
             >
             +
             </b-button>
@@ -74,7 +74,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'rounds',
+      'game',
       'players'
     ]),
   },
@@ -89,9 +89,8 @@ export default {
     ]),
 
     handleSubmit() {
-      console.log(this.players[0])
       this.createNewLeague(this.players);
-      //move to new page
+      this.$router.push('/scores');
       //get game
     }
   }

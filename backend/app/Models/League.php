@@ -17,7 +17,7 @@ class League extends Model
     protected $fillable = [
       'game_type',
       'participants',
-      'is_complete',
+      'completed_at',
   ];
 
     /**

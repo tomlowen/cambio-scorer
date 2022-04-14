@@ -51,7 +51,7 @@ const mutations = {
   RENAME(state, payload) {
     state.players = [
       ...state.players.slice(0, payload.index),
-      {...state.players[payload.index], name: payload.$event.target.value},
+      {...state.players[payload.index], name: payload.$event},
       ...state.players.slice(payload.index + 1, state.players.length)
     ];
   }
