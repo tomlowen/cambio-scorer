@@ -19,8 +19,8 @@ const actions = {
   rename({commit}, payload) {
     commit('RENAME', payload);
   },
-  updateGameScore(context, scores) {
-    //make post request
+  updatePlayerScores(context, scores) {
+
     // await axios
     //   .post('https://cambio-scorer-backend.herokuapp.com/api/v1/rounds', {
     //     params: {
@@ -29,7 +29,12 @@ const actions = {
     //   })
     //   .then(response => console.log(response))
 
-    // context.commit('SET', rounds);
+    context.commit('SET_GAME_SCORE', response.data);
+  },
+
+  updateRoundScore({commit, state}, payload) {
+    console.log(state.players[payload.index]);
+    commit('SET_ROUND_SCORE', payload)
   }
 }
 
@@ -54,7 +59,23 @@ const mutations = {
       {...state.players[payload.index], name: payload.$event},
       ...state.players.slice(payload.index + 1, state.players.length)
     ];
-  }
+  },
+
+  SET_ROUND_SCORE(state, payload) {
+    state.players = [
+      ...state.players.slice(0, payload.index),
+      {...state.players[payload.index], roundScore: payload.$event.target.value},
+      ...state.players.slice(payload.index + 1, state.players.length)
+    ];
+  },
+
+  // SET_GAME_SCORE(state, payload) {
+  //   state.players = [
+  //     ...state.players.slice(0, payload.index),
+  //     {...state.players[payload.index], gameScore: payload.$event.target.value},
+  //     ...state.players.slice(payload.index + 1, state.players.length)
+  //   ];
+  // }
 }
 
 const getters = {

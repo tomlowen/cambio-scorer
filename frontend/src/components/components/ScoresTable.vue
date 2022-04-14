@@ -7,9 +7,9 @@
         <th>Round score</th>
         <th>Total score</th>
       </tr>
-      <tr v-for="player in players" :key="player.name">
+      <tr v-for="(player, index) in players" :key="player.name">
         <th>{{player.name}}</th>
-        <th><input :value="player.gameScore" /></th>
+        <th><input :value="player.roundScore" @input="updateRoundScore({$event, index})"/></th>
         <th>{{player.gameScore}}</th>
       </tr>
     </table>
@@ -19,28 +19,30 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  data() {
-    return {
-      
-    }
-  },
 
   computed: {
     ...mapGetters(["game", 'players']),
   },
 
   methods: {
-    moveToNextRound() {
+    ...mapActions([
+      'updateRoundScore',
+      'updatePlayerScores',
+      'incrementGameRounds'
+    ]),
 
-    },
+    moveToNextRound() {
+      this.incrementGameRounds();
+      this.updatePlayerScores();
+    }
+
+  },
 
     finishGame() {
 
     }
-  }
-};
+  };
 </script>

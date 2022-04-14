@@ -51,12 +51,12 @@ const actions = {
           participants: participantString
         }
       })
-      .then((response) => context.commit('SET', response.data))
+      .then((response) => context.commit('SET_LEAGUES', response.data))
   },
 }
 
 const mutations = {
-  SET(state, leagues) {
+  SET_LEAGUES(state, leagues) {
     state.leagues = leagues;
   }
 }

@@ -91,7 +91,6 @@ export default {
     handleSubmit() {
       this.createNewLeague(this.players);
       this.$router.push('/scores');
-      //get game
     }
   }
 

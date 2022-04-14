@@ -3,7 +3,7 @@ const state = () => ({
     id: 1,
     league_id: 1,
     rounds: 5,
-    current_round: 2,
+    current_round: 1,
     is_50_reached: false,
     is_complete: false,
     created_at: '2022-04-13T15:25:26.000000Z',
@@ -14,25 +14,30 @@ const state = () => ({
 const actions = {
 
   updateGame({commit}, game) {
-      commit('SET', game);
+      commit('SET_GAME', game);
   },
 
   updateRounds({commit}, rounds) {
     commit('ROUNDS', rounds);
   },
 
-  initiateGame() {
+  incrementGameRounds({commit, state}) {
+    console.log(state.game.current_round);
+    commit('INCREMENT_ROUND');
   },
 
 
 }
 
 const mutations = {
-  SET(state, game) {
+  SET_GAME(state, game) {
     state.game = game;
   },
   ROUNDS(state, rounds) {
     state.game.rounds = rounds;
+  },
+  INCREMENT_ROUND(state) {
+    state.game.current_round++;
   }
 }
 
