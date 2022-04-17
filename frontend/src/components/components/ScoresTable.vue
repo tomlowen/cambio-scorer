@@ -35,7 +35,6 @@ export default {
     ]),
 
     moveToNextRound() {
-      this.incrementGameRounds();
       this.updatePlayerScores();
     }
 

@@ -1,4 +1,5 @@
 import PlayerModel from '../util/models/playerModel'
+import axios from 'axios';
 
 const state = () => (
   {
@@ -19,21 +20,28 @@ const actions = {
   rename({commit}, payload) {
     commit('RENAME', payload);
   },
-  updatePlayerScores(context, scores) {
+  async updatePlayerScores(context) {
+    console.log(context.getters.players);
+    const scores = context.getters.players.map((p) => {
+      return {
+        'name': p.name,
+        'score': p.roundScore,
+      }
+    });
 
-    // await axios
-    //   .post('https://cambio-scorer-backend.herokuapp.com/api/v1/rounds', {
-    //     params: {
-    //       game_id: context.rootGetters.game.id
-    //     },
-    //   })
-    //   .then(response => console.log(response))
-
-    context.commit('SET_GAME_SCORE', response.data);
+    await axios
+      .post('http://localhost:8000/api/v1/rounds', {}, {
+        params: {
+          game_id: context.getters.game.id,
+        },
+        data: {
+          scores: scores
+        },
+      })
+      .then(response => context.commit('SET_GAME_SCORE', response.data.scores))
   },
 
-  updateRoundScore({commit, state}, payload) {
-    console.log(state.players[payload.index]);
+  updateRoundScore({commit}, payload) {
     commit('SET_ROUND_SCORE', payload)
   }
 }

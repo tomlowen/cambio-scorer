@@ -28,7 +28,7 @@ class RoundController extends Api
      */
     public function store(Request $request)
     {
-      $game = Game::find($request->game_id);
+      $game = Game::find($request->input('game_id'));
       $round = Round::create(['game_id' => $game->id]);
 
       $game->increment('current_round');

@@ -85,7 +85,8 @@ export default {
       'removePlayer',
       'addPlayer',
       'rename',
-      'createNewLeague'
+      'createNewLeague',
+      'createNewGame',
     ]),
 
     handleSubmit() {

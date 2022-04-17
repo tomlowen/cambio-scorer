@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\GameResource;
 use App\Models\Game;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,17 @@ class GameController extends Api
     }
 
     /**
+     * Display a listing of the selected resource.
+     *
+     * @param Game $game
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Game $game)
+    {
+        return $game->with('scores')->first();
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -31,12 +43,13 @@ class GameController extends Api
         return $lastGame;
       }
 
-      $game = Game::create([
+      $newGame = Game::create([
         'league_id' => $request->league_id,
         'rounds' => $request->rounds,
+        'current_round' => 1,
       ]);
 
-      return $game;
+      return new GameResource($newGame);
     }
 
     /**

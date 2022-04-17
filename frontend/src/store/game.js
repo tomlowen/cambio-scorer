@@ -1,18 +1,19 @@
+import axios from 'axios';
+
 const state = () => ({
   game: {
-    id: 1,
-    league_id: 1,
+    id: 0,
+    league_id: 0,
     rounds: 5,
     current_round: 1,
     is_50_reached: false,
     is_complete: false,
-    created_at: '2022-04-13T15:25:26.000000Z',
-    updated_at: '2022-04-13T15:30:48.000000Z',
+    created_at: '',
+    updated_at: '',
 },
 })
 
 const actions = {
-
   updateGame({commit}, game) {
       commit('SET_GAME', game);
   },
@@ -21,13 +22,24 @@ const actions = {
     commit('ROUNDS', rounds);
   },
 
-  incrementGameRounds({commit, state}) {
-    console.log(state.game.current_round);
+  incrementGameRounds({commit}) {
     commit('INCREMENT_ROUND');
   },
 
-
-}
+  async createNewGame({commit, getters}) {
+    await axios
+      .post('http://localhost:8000/api/v1/games', {}, {
+        params: {
+          rounds: getters.game.rounds,
+          league_id: getters.leagues[0].id
+        }
+      })
+      .then((response) => {
+        console.log(response.data.data)
+        commit('SET_GAME', response.data.data)
+      }
+      )},
+};
 
 const mutations = {
   SET_GAME(state, game) {
