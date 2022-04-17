@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-card bg-variant="light">
+  <div >
+    <b-card class="start-card" bg-variant="light">
       <b-form @submit="handleSubmit">
         <b-form-group id="player-inputs">
           <div v-for="(player, index) in players" v-bind:key="index">
