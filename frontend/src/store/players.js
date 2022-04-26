@@ -27,7 +27,7 @@ const actions = {
         'score': p.roundScore,
       }
     });
-    console.log(scores);
+
     await axios({
       method: 'post',
       url: 'http://localhost:8000/api/v1/rounds/?game_id=' + context.getters.game.id,
@@ -37,7 +37,9 @@ const actions = {
     })
     .then(function (response) {
       context.commit('SET_GAME_SCORE', response.data.scores);
-      context.dispatch('incrementGameRounds');
+      if (!response.data.completed_at) {
+        context.dispatch('incrementGameRounds');
+      }
     })
   },
 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('game_type')->default('cambio');
             $table->smallInteger('rounds');
             $table->smallInteger('current_round')->default(1);
-            $table->boolean('is_50_reached')->default('0');
+            $table->boolean('is_50_reached')->default(false);
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });

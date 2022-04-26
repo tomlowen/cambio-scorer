@@ -13,8 +13,8 @@
         <th>{{player.gameScore}}</th>
       </tr>
     </table>
-    <b-button v-if="game.current_round < game.rounds" @click="moveToNextRound">Move to next round</b-button>
-    <b-button v-else @click="finishGame">Finish the game</b-button>
+    <b-button v-if="game.current_round < game.rounds" @click="submitRoundScore">Move to next round</b-button>
+    <b-button v-else @click="submitRoundScore">Finish the game</b-button>
   </div>
 </template>
 
@@ -34,14 +34,9 @@ export default {
       'incrementGameRounds'
     ]),
 
-    moveToNextRound() {
+    submitRoundScore() {
       this.updatePlayerScores();
     }
-
   },
-
-    finishGame() {
-
-    }
   };
 </script>

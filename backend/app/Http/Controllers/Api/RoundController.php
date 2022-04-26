@@ -55,6 +55,16 @@ class RoundController extends Api
         }
       }
 
+      $fiftyScore = Score::query()
+        ->where('scoreable_type', 'game')
+        ->where('scoreable_id', $game->id)
+        ->where('score', 50);
+
+      if (!$game->is_50_reached && $fiftyScore->exists()) {
+        $fiftyScore->update(['score' => 0]);
+        $game->update(['is_50_reached' => true]);
+      }
+
       if ($game->current_round === $game->rounds) {
         $game->update(['completed_at' => now()]);
       } else {
