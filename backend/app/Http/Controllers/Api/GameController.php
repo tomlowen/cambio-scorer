@@ -46,7 +46,7 @@ class GameController extends Api
       $newGame = Game::create([
         'league_id' => $request->league_id,
         'rounds' => $request->rounds,
-        'current_round' => 0,
+        'current_round' => 1,
       ]);
 
       return new GameResource($newGame);

@@ -31,8 +31,6 @@ class RoundController extends Api
       $game = Game::find($request->input('game_id'));
       $round = Round::create(['game_id' => $game->id]);
 
-      $game->increment('current_round');
-
       foreach ($request->collect('scores') as $player) {
         $roundScore = Score::create([
           'player_name' => $player['name'],
@@ -56,6 +54,8 @@ class RoundController extends Api
             ->increment('score', $roundScore->score);
         }
       }
+
+      $game->increment('current_round');
 
       // $request->collect('scores')->each(function ($player) use ($round, $game) {
       //   $roundScore = Score::create([

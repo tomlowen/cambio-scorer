@@ -21,24 +21,24 @@ const actions = {
     commit('RENAME', payload);
   },
   async updatePlayerScores(context) {
-    console.log(context.getters.players);
     const scores = context.getters.players.map((p) => {
       return {
         'name': p.name,
         'score': p.roundScore,
       }
     });
-
-    await axios
-      .post('http://localhost:8000/api/v1/rounds', {}, {
-        params: {
-          game_id: context.getters.game.id,
-        },
-        data: {
-          scores: scores
-        },
-      })
-      .then(response => context.commit('SET_GAME_SCORE', response.data.scores))
+    console.log(scores);
+    await axios({
+      method: 'post',
+      url: 'http://localhost:8000/api/v1/rounds/?game_id=' + context.getters.game.id,
+      data: {
+        scores: scores,
+      }
+    })
+    .then(function (response) {
+      context.commit('SET_GAME_SCORE', response.data.scores);
+      context.dispatch('incrementGameRounds');
+    })
   },
 
   updateRoundScore({commit}, payload) {
@@ -77,13 +77,14 @@ const mutations = {
     ];
   },
 
-  // SET_GAME_SCORE(state, payload) {
-  //   state.players = [
-  //     ...state.players.slice(0, payload.index),
-  //     {...state.players[payload.index], gameScore: payload.$event.target.value},
-  //     ...state.players.slice(payload.index + 1, state.players.length)
-  //   ];
-  // }
+  SET_GAME_SCORE(state, payload) {
+    let players = [];
+    payload.forEach(function (player) {
+      const { player_name, score } = player;
+      players.push(new PlayerModel(player_name, score))
+    })
+    state.players = players;
+  }
 }
 
 const getters = {

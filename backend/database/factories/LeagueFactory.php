@@ -25,7 +25,6 @@ class LeagueFactory extends Factory
       return [
         'game_type' => 'cambio',
         'participants' => $this->faker->randomElement($this->leaguePlayers),
-        'is_complete' => $this->faker->boolean(),
       ];
     }
 }
