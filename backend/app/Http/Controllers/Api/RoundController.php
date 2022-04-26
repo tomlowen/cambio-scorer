@@ -55,31 +55,11 @@ class RoundController extends Api
         }
       }
 
-      $game->increment('current_round');
-
-      // $request->collect('scores')->each(function ($player) use ($round, $game) {
-      //   $roundScore = Score::create([
-      //     'player_name' => $player['name'],
-      //     'score' => $player['score'],
-      //     'scoreable_type' => 'round',
-      //     'scoreable_id' => $round->id,
-      //   ]);
-
-      //   if($game->current_round === 1) {
-      //     Score::create([
-      //       'scoreable_type' => 'game',
-      //       'scoreable_id' => $game->id,
-      //       'player_name' => $player['name'],
-      //       'score' => $player['score'],
-      //     ]);
-      //   } else {
-      //     Score::query()
-      //       ->where('scoreable_type', 'game')
-      //       ->where('scoreable_id', $game->id)
-      //       ->where('player_name', $player['name'])
-      //       ->increment('score', $roundScore->score);
-      //   }
-      // });
+      if ($game->current_round === $game->rounds) {
+        $game->update(['completed_at' => now()]);
+      } else {
+        $game->increment('current_round');
+      };
 
       return Game::with('scores')->where('id',$game->id)->first();
     }

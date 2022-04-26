@@ -21,7 +21,7 @@ class Game extends Model
       'rounds',
       'current_round',
       'is_50_reached',
-      'is_complete',
+      'completed_at',
     ];
 
     /**

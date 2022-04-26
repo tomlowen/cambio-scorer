@@ -20,7 +20,7 @@ return new class extends Migration
             $table->smallInteger('rounds');
             $table->smallInteger('current_round')->default(1);
             $table->boolean('is_50_reached')->default('0');
-            $table->boolean('is_complete')->default('0');
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });
     }

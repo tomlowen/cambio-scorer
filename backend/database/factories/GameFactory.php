@@ -27,7 +27,6 @@ class GameFactory extends Factory
         'game_type' => 'cambio',
         'rounds' => $this->faker->numberBetween(3,5),
         'is_50_reached' => $this->faker->boolean(),
-        'is_complete' => $this->faker->boolean(),
       ];
     }
 }
