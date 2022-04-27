@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="d-flex">
-      <h1>Cambio scorer</h1>
-      <button :hidden="!game.is_complete" @click="handleClick">Start new game</button>
+    <div class="header">
+      <img class="logo" src="/cambio-card-game.png" />
+      <button :hidden="!is_game_completed" @click="handleClick">Start new game</button>
     </div>
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">

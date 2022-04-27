@@ -26,6 +26,16 @@ const actions = {
       .then((response) => context.commit('SET_LEAGUES', response.data))
       .then(()=> context.dispatch('createNewGame', null, { root: true }))
   },
+
+  async updateLeague(context, league) {
+    await axios
+    .put('http://localhost:8000/api/v1/leagues' + league.id, {}, {
+      data: {
+        league: league
+      }
+    })
+    .then((response) => context.commit('SET_LEAGUES', response.data))
+  },
 }
 
 const mutations = {

@@ -4,14 +4,21 @@ import axios from 'axios';
 const state = () => (
   {
     players : [
-      new PlayerModel,
+      new PlayerModel(null, 0, true),
       new PlayerModel,
     ]
   }
 )
 
 const actions = {
-  removePlayer({commit}, playerIndex) {
+  removePlayer({commit, getters}, playerIndex) {
+    if(getters.players[playerIndex].dealer) {
+      if(playerIndex === 0) {
+        commit('SET_DEALER', {index: 1});
+      } else {
+        commit('SET_DEALER', {index: 0});
+      }
+    }
     commit('REMOVE_PLAYER', playerIndex);
   },
   addPlayer({commit}) {
@@ -20,7 +27,11 @@ const actions = {
   rename({commit}, payload) {
     commit('RENAME', payload);
   },
+  setDealer({commit}, payload) {
+    commit('SET_DEALER', payload);
+  },
   async updatePlayerScores(context) {
+    const dealer = context.getters.players.indexOf(context.getters.players.find(p=>p.dealer));
     const scores = context.getters.players.map((p) => {
       return {
         'name': p.name,
@@ -38,6 +49,13 @@ const actions = {
     .then(function (response) {
       context.commit('SET_GAME_SCORE', response.data.scores);
       context.dispatch('updateGame', response.data);
+    })
+    .then(function () {
+      if(dealer === context.getters.players.length -1) {
+        context.commit('SET_DEALER', {index: 0});
+      } else {
+        context.commit('SET_DEALER', {index: dealer + 1});
+      }
     })
   },
 
@@ -67,6 +85,16 @@ const mutations = {
       {...state.players[payload.index], name: payload.$event},
       ...state.players.slice(payload.index + 1, state.players.length)
     ];
+  },
+
+  SET_DEALER(state, payload) {
+    let players = state.players;
+    const dealer = players.find(p=>p.dealer);
+    if(dealer) {
+      dealer.dealer = false
+    }
+    players[payload.index].dealer = true;
+    state.players = players;
   },
 
   SET_ROUND_SCORE(state, payload) {

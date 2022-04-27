@@ -1,12 +1,15 @@
 <template>
   <div >
     <b-card class="start-card" bg-variant="light">
+      <h1>Game setup</h1>
       <b-form @submit="handleSubmit">
         <b-form-group id="player-inputs">
           <div v-for="(player, index) in players" v-bind:key="index">
-            <div class="d-flex justify-content-between mb-3">
+            <div class="player-input-row d-flex justify-content-between mb-3">
+              <img src="/dealer.png" @click="setDealer({index})" :class="player.dealer ? 'dealer-icon selected' : 'dealer-icon'"/>
+
               <b-form-input
-                class="pr-3"
+                class="name-input"
                 type="text"
                 :placeholder="'Player ' + (index + 1) + ' name'"
                 :value="player.name"
@@ -14,8 +17,10 @@
               ></b-form-input>
 
               <b-button
+                class="circular-button"
                 variant="danger"
-                @click="removePlayer(index)">
+                @click="removePlayer(index)"
+                :disabled="players.length < 2">
               -
               </b-button>
             </div>
@@ -32,6 +37,7 @@
         <b-form-group id="round-inputs">
           <div class="d-flex justify-content-around">
             <b-button
+            class="circular-button"
               variant="outline-secondary"
               :disabled="game.rounds === this.$constants.minRounds"
               @click="updateRounds(game.rounds - 1)"
@@ -42,6 +48,7 @@
             <p>{{ game.rounds }} round{{game.rounds === 1 ? '' : 's'}}</p>
 
             <b-button
+            class="circular-button"
               variant="outline-secondary"
               :disabled="game.rounds === this.$constants.maxRounds"
               @click="updateRounds(game.rounds + 1)"
@@ -87,6 +94,7 @@ export default {
       'rename',
       'createNewLeague',
       'createNewGame',
+      'setDealer'
     ]),
 
     handleSubmit() {

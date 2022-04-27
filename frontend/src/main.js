@@ -12,6 +12,8 @@ import helpers from './util/helpers'
 import StartPage from './components/pages/StartPage.vue';
 import ScorePage from './components/pages/ScorePage.vue';
 
+import './assets/css/index.css';
+
 const Start = StartPage
 const Scores = ScorePage
 

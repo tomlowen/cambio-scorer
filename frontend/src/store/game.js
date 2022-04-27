@@ -57,7 +57,7 @@ const getters = {
   game: (state) => {
     return state.game;
   },
-  is_completed: (state) => {
+  is_game_completed: (state) => {
     return state.game.completed_at ? 1 : 0;
   }
 }
