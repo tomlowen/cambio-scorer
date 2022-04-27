@@ -7,7 +7,7 @@ const state = () => ({
     rounds: 5,
     current_round: 1,
     is_50_reached: false,
-    is_complete: false,
+    completed_at: '',
     created_at: '',
     updated_at: '',
 },
@@ -56,6 +56,9 @@ const mutations = {
 const getters = {
   game: (state) => {
     return state.game;
+  },
+  is_completed: (state) => {
+    return state.game.completed_at ? 1 : 0;
   }
 }
 

@@ -37,9 +37,7 @@ const actions = {
     })
     .then(function (response) {
       context.commit('SET_GAME_SCORE', response.data.scores);
-      if (!response.data.completed_at) {
-        context.dispatch('incrementGameRounds');
-      }
+      context.dispatch('updateGame', response.data);
     })
   },
 

@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <h1>Cambio scorer</h1>
+    <div class="d-flex">
+      <h1>Cambio scorer</h1>
+      <button :hidden="!game.is_complete" @click="handleClick">Start new game</button>
+    </div>
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component" :key="$route.path" />
@@ -12,15 +15,25 @@
 <script>
 import StartPage from './components/pages/StartPage.vue';
 import ScorePage from './components/pages/ScorePage.vue';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   components: {
     StartPage,
     ScorePage,
   },
+
+  computed: {
+    ...mapGetters(["game"]),
+  },
+
+  methods: {
+      ...mapActions(["createNewGame"]),
+
+      handleClick() {
+        this.createNewGame();
+        this.$router.push('/scores');
+      }
+  }
 }
 </script>
-
-<style>
-  @import '../src/assets/css/index.css';
-</style>
