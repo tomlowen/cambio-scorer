@@ -37,10 +37,10 @@ class GameController extends Api
      */
     public function store(Request $request)
     {
-      $lastGame = Game::where('league_id', $request->league_id)->latest()->first();
-      if($lastGame && !$lastGame->is_complete) {
+      $lastGame = Game::where('league_id', $request->league_id)->latest();
+      if($lastGame->exists() && $lastGame->where('completed_at', null)->exists()) {
 
-        return $lastGame;
+        return new GameResource($lastGame->first());
       }
 
       $newGame = Game::create([

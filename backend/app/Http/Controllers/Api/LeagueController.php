@@ -32,7 +32,7 @@ class LeagueController extends Api
         League::create(['participants' => $request->input('participants')]);
       }
 
-      return $league->with(['games', 'scores'])->get();
+      return League::where('participants', $request->input('participants'))->orderBy('completed_at', 'desc')->with('scores')->get();
     }
 
     /**

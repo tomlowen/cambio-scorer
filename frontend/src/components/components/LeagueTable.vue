@@ -16,8 +16,8 @@
               <th>Name</th>
               <th>Score</th>
             </tr>
-            <tr v-for="score in league.scores" :key="score.name">
-              <td>{{score.name}}</td>
+            <tr v-for="score in league.scores" :key="score.player_name">
+              <td>{{score.player_name}}</td>
               <td>{{score.score}}</td>
             </tr>
           </table>

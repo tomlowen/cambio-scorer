@@ -35,7 +35,6 @@ const actions = {
         }
       })
       .then((response) => {
-        console.log(response.data.data)
         commit('SET_GAME', response.data.data)
       }
       )},
