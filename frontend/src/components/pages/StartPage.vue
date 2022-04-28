@@ -34,29 +34,8 @@
           </b-button>
         </b-form-group>
 
-        <b-form-group id="round-inputs">
-          <div class="d-flex justify-content-around">
-            <b-button
-            class="circular-button"
-              variant="outline-secondary"
-              :disabled="game.rounds === this.$constants.minRounds"
-              @click="updateRounds(game.rounds - 1)"
-            >
-            -
-            </b-button>
-
-            <p>{{ game.rounds }} round{{game.rounds === 1 ? '' : 's'}}</p>
-
-            <b-button
-            class="circular-button"
-              variant="outline-secondary"
-              :disabled="game.rounds === this.$constants.maxRounds"
-              @click="updateRounds(game.rounds + 1)"
-            >
-            +
-            </b-button>
-          </div>
-        </b-form-group>
+        <b-button id="show-btn" @click="$bvModal.show('options-modal')">More options</b-button>
+        <options-modal></options-modal>
 
         <div class="d-grid gap-2">
           <b-button
@@ -74,8 +53,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import OptionsModal from '../components/OptionsModal.vue'
 
 export default {
+  components: {
+    OptionsModal
+  },
+
   inject:
     ['$constants', '$helpers'],
 

@@ -18,10 +18,6 @@ const actions = {
       commit('SET_GAME', game);
   },
 
-  updateRounds({commit}, rounds) {
-    commit('ROUNDS', rounds);
-  },
-
   incrementGameRounds({commit}) {
     commit('INCREMENT_ROUND');
   },
@@ -44,9 +40,7 @@ const mutations = {
   SET_GAME(state, game) {
     state.game = game;
   },
-  ROUNDS(state, rounds) {
-    state.game.rounds = rounds;
-  },
+
   INCREMENT_ROUND(state) {
     state.game.current_round++;
   }
