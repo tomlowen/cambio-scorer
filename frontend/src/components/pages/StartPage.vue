@@ -27,10 +27,11 @@
           </div>
 
           <b-button
+            class="circular-button"
             variant="success"
             @click="addPlayer"
           >
-          Add player
+          +
           </b-button>
         </b-form-group>
 

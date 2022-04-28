@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="app-container">
     <div class="header">
       <img class="logo" src="/cambio-card-game.png" />
       <button :hidden="!is_game_completed" @click="handleClick">Start new game</button>

@@ -13,6 +13,9 @@ const actions = {
   updateLeaguePoints({commit}, pointsArray) {
     commit('LEAGUE_POINTS', pointsArray);
   },
+  toggleFiftyRule({commit}) {
+    commit('TOGGLE_FIFTY_RULE');
+  }
 };
 
 const mutations = {
@@ -22,6 +25,9 @@ const mutations = {
   LEAGUE_POINTS(state, pointsArray) {
     state.leaguePoints = pointsArray;
   },
+  TOGGLE_FIFTY_RULE(state) {
+    state.isFiftyRulePlayed = !state.isFiftyRulePlayed;
+  }
 }
 
 const getters = {

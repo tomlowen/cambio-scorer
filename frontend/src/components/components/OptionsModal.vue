@@ -11,7 +11,7 @@
             -
             </b-button>
 
-            <p>{{ rounds }} round{{rounds === 1 ? '' : 's'}}</p>
+            <p class="mt-2">{{ rounds }} round{{rounds === 1 ? '' : 's'}}</p>
 
             <b-button
             class="circular-button"
@@ -27,13 +27,13 @@
         <div>
           <b-form-checkbox
             id="fifty-checkbox"
+            @click="toggleFiftyRule"
             v-model="isFiftyRulePlayed"
             name="fifty-checkbox"
+            size="lg"
           >
             Enable first to 50 rule
           </b-form-checkbox>
-
-          <div>State: <strong>{{ isFiftyRulePlayed }}</strong></div>
         </div>
 
         <div>
@@ -46,7 +46,7 @@
           </table>
         </div>
 
-    <b-button class="mt-3" block @click="$bvModal.hide('options-modal')">Close Me</b-button>
+    <b-button class="mt-3" block @click="$bvModal.hide('options-modal')" variant="success">Close</b-button>
   </b-modal>
 </template>
 
@@ -69,7 +69,8 @@ export default {
   methods: {
     ...mapActions([
       'updateRounds',
-      'updateLeaguePoints'
+      'updateLeaguePoints',
+      'toggleFiftyRule',
     ]),
   }
 };
