@@ -100,7 +100,7 @@ const mutations = {
   SET_ROUND_SCORE(state, payload) {
     state.players = [
       ...state.players.slice(0, payload.index),
-      {...state.players[payload.index], roundScore: payload.$event.target.value},
+      {...state.players[payload.index], roundScore: Number(payload.score)},
       ...state.players.slice(payload.index + 1, state.players.length)
     ];
   },

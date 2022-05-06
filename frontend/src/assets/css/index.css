@@ -37,15 +37,24 @@ h1 {
   background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
   height:100%;
   display: flex;
-  justify-content: center;}
+  justify-content: center;
+}
 
 .logo {
   height: 170px;
   margin-top: 15px;
 }
 
+.modal-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .name-col {
   padding: 10px;
+  font-size: 24px;
+  vertical-align: top;
 }
 
 .name-col::first-letter {
@@ -54,6 +63,15 @@ h1 {
 
 .name-input {
   width: 70%;
+}
+
+.round-score-col {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  padding-bottom: 30px;
 }
 
 .score-card {

@@ -1,4 +1,4 @@
-import getParticpantString from '../util/helpers';
+import $helpers from '../util/helpers';
 import axios from 'axios';
 
 const state = () => ({
@@ -16,7 +16,8 @@ const state = () => ({
 
 const actions = {
   async createNewLeague(context, players) {
-    const participantString = getParticpantString(players);
+    console.log($helpers.getParticpantString);
+    const participantString = $helpers.getParticpantString(players);
     await axios
       .post('http://localhost:8000/api/v1/leagues', {}, {
         params: {
