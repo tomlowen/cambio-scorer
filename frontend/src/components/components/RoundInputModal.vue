@@ -1,5 +1,7 @@
 <template>
   <b-modal id="round-input-modal" hide-footer>
+    <h1 class="py-3">Round {{game.current_round}} scores</h1>
+
     <table class="w-100">
       <tr>
         <th class="column name-col"></th>
@@ -43,6 +45,7 @@ export default {
     ...mapGetters([
       'players',
       'rounds',
+      'game',
     ]),
   },
 

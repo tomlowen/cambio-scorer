@@ -35,9 +35,6 @@
           </b-button>
         </b-form-group>
 
-        <b-button id="show-btn" @click="$bvModal.show('options-modal')">More options</b-button>
-        <options-modal></options-modal>
-
         <div class="d-grid gap-2">
           <b-button
             block
@@ -47,6 +44,10 @@
           Start scoring
           </b-button>
         </div>
+
+        <b-button class="mt-3" variant="outline-dark" id="show-btn" @click="$bvModal.show('options-modal')">More options</b-button>
+        <options-modal></options-modal>
+
       </b-form>
     </b-card>
   </div>

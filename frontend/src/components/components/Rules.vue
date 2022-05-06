@@ -21,7 +21,7 @@
       </tr>
       <tr>
         <td>All others: </td>
-        <td>face value</td>
+        <td>Face value</td>
       </tr>
     </table>
   </div>

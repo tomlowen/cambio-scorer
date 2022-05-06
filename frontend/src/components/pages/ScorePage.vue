@@ -1,6 +1,6 @@
 <template>
 <b-card class="score-card" bg-variant="light">
-      <b-tabs content-class="mt-3">
+    <b-tabs content-class="mt-3" fill>
       <b-tab title="Scores" active>
         <scores-table></scores-table>
       </b-tab>
