@@ -22,11 +22,32 @@ const actions = {
     commit('INCREMENT_ROUND');
   },
 
+  async finishGame({commit, dispatch, getters}) {
+    dispatch('changeTab', 1);
+    const scores = getters.players.map((p) => {
+      return {
+        'name': p.name,
+        'gameScore': p.gameScore,
+      }
+    });
+
+    await axios({
+      method: 'put',
+      url: 'http://localhost:8000/api/v1/leagues/' + getters.leagues[0].id,
+      data: {
+        scores: scores,
+      }
+      })
+      .then((response) => {
+        commit('SET_LEAGUE', response.data.data)
+      })
+  },
+
   async createNewGame({commit, getters}) {
     await axios
       .post('http://localhost:8000/api/v1/games', {}, {
         params: {
-          rounds: getters.game.rounds,
+          rounds: getters.options.rounds,
           league_id: getters.leagues[0].id
         }
       })

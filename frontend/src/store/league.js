@@ -16,7 +16,6 @@ const state = () => ({
 
 const actions = {
   async createNewLeague(context, players) {
-    console.log($helpers.getParticpantString);
     const participantString = $helpers.getParticpantString(players);
     await axios
       .post('http://localhost:8000/api/v1/leagues', {}, {

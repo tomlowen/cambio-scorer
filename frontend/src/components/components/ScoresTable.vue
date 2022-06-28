@@ -13,7 +13,7 @@
       </b-card>
       </div>
     <b-button class="w-100 py-2 my-3" block v-if="game.current_round < game.rounds" id="show-btn" @click="$bvModal.show('round-input-modal')">Add Round {{game.current_round}} scores</b-button>
-    <b-button class="w-100 py-2 my-3" block v-else @click="submitRoundScore">Finish the game</b-button>
+    <b-button class="w-100 py-2 my-3" block v-else @click="$bvModal.show('round-input-modal')">Add final round scores</b-button>
     <round-input-modal></round-input-modal>
   </div>
 </template>

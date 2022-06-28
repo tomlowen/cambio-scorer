@@ -2,7 +2,7 @@ const state = () => ({
     rounds: 5,
     isFiftyRulePlayed: true,
     leaguePoints: [
-      1,0
+      4,2,1,0
     ],
 })
 

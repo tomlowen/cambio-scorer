@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\League;
+use App\Models\Score;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -47,13 +48,22 @@ class LeagueController extends Api
     }
 
     /**
-     * Complete the league.
+     * Finish the league.
      *
      * @param  \App\Models\League  $league
      * @return \Illuminate\Http\Response
      */
-    public function complete(Request $request)
+    public function update(Request $request, League $league)
     {
-      return League::where('id', $request->id)->update(['is_complete' => true]);
+      foreach($request->scores as $player) {
+        Score::create([
+          'scoreable_type' => 'league',
+          'scoreable_id' => $league->id,
+          'player_name' => $player['name'],
+          'score' => $player['gameScore'],
+        ]);
+      }
+
+      return League::with(['scores'])->where('id', $league->id)->first();
     }
 }

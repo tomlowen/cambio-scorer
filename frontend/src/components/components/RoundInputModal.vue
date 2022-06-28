@@ -32,7 +32,8 @@
     </table>
     <div class="modal-buttons">
       <b-button class="mt-3" block @click="$bvModal.hide('round-input-modal')" variant="danger">Cancel</b-button>
-      <b-button class="mt-3" block @click="submitRoundScore" variant="success">Save scores</b-button>
+      <b-button class="mt-3" block v-if="game.current_round < game.rounds" @click="submitRoundScore" variant="success">Save scores</b-button>
+      <b-button class="mt-3" block v-else @click="submitRoundScore" variant="success">Finish the game</b-button>
     </div>
   </b-modal>
 </template>

@@ -1,6 +1,6 @@
 <template>
 <b-card class="score-card" bg-variant="light">
-    <b-tabs content-class="mt-3" fill>
+    <b-tabs content-class="mt-3" fill v-model="tabIndex">
       <b-tab title="Scores" active>
         <scores-table></scores-table>
       </b-tab>
@@ -21,5 +21,16 @@ export default {
     LeagueTable,
     Rules
   },
+
+  computed: {
+    tabIndex: {
+        get () {
+          return this.$store.state.tabIndex
+        },
+        set (value) {
+          this.$store.commit('SET_TAB', value)
+        }
+      }
+  }
 };
 </script>

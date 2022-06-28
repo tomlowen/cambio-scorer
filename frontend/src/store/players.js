@@ -38,6 +38,7 @@ const actions = {
         'score': p.roundScore,
       }
     });
+    console.log(scores);
 
     await axios({
       method: 'post',
@@ -46,10 +47,13 @@ const actions = {
         scores: scores,
       }
     })
-    .then(function (response) {
+    .then(async function (response) {
       context.commit('SET_GAME_SCORE', response.data.scores);
       context.dispatch('updateGame', response.data);
-    })
+      if(response.data.completed_at) {
+        context.dispatch('finishGame');
+        }
+      })
     .then(function () {
       if(dealer === context.getters.players.length -1) {
         context.commit('SET_DEALER', {index: 0});
