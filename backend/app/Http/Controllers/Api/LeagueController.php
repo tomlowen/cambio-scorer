@@ -82,6 +82,7 @@ class LeagueController extends Api
         $leagueScore->update(['score' => $leagueScore->score + $options[$rank]]);
       }
 
+      
       return League::where('participants', $league->participants)->orderBy('completed_at', 'desc')->with('scores')->get();
     }
 }
