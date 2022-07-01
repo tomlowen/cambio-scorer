@@ -41,7 +41,7 @@ const actions = {
 
     await axios({
       method: 'post',
-      url: 'https://cambio-scorer-backend.herokuapp.com/api/v1/rounds/?game_id=' + context.getters.game.id,
+      url: 'https://cambio-scorer-backend.herokuapp.com/api/v1/rounds?game_id=' + context.getters.game.id,
       data: {
         scores: scores,
       }
