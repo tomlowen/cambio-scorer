@@ -1,4 +1,3 @@
-import $helpers from '../util/helpers';
 import axios from 'axios';
 
 const state = () => ({
@@ -24,13 +23,25 @@ const actions = {
   },
 
   async finishGame({commit, dispatch, getters}) {
-    dispatch('changeTab', 1);
-    const scores = getters.players.map((p) => {
+
+    let scores = getters.players.map((p) => {
+        return p.gameScore
+      }
+    );
+    let unique = new Set(scores);
+    
+    if (unique.size != scores.length) {
+      return
+    }
+
+     scores = getters.players.map((p) => {
       return {
         'name': p.name,
         'gameScore': p.gameScore,
       }
     });
+
+    dispatch('changeTab', 1);
 
     await axios({
       method: 'put',
@@ -56,6 +67,12 @@ const actions = {
         commit('SET_GAME', response.data.data)
       }
       )},
+
+    async startNewGame({dispatch}) {
+      dispatch('changeTab', 0);
+      dispatch('createNewGame');
+      dispatch('resetScores');
+    }
 };
 
 const mutations = {

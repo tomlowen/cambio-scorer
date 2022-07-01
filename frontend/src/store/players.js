@@ -38,7 +38,6 @@ const actions = {
         'score': p.roundScore,
       }
     });
-    console.log(scores);
 
     await axios({
       method: 'post',
@@ -65,6 +64,10 @@ const actions = {
 
   updateRoundScore({commit}, payload) {
     commit('SET_ROUND_SCORE', payload)
+  },
+
+  resetScores({commit}) {
+    commit('RESET_SCORES')
   }
 }
 
@@ -116,6 +119,12 @@ const mutations = {
       players.push(new PlayerModel(player_name, score))
     })
     state.players = players;
+  },
+
+  RESET_SCORES(state) {
+    state.players.forEach(function (player) {
+      player.gameScore = 0;
+    })
   }
 }
 

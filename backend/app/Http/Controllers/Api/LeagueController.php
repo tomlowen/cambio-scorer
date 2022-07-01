@@ -68,7 +68,7 @@ class LeagueController extends Api
 
       usort($sortedScores, function ($a, $b) { return $a['gameScore'] <=> $b['gameScore']; });
 
-      foreach ($request->scores as $index=>$player) {
+      foreach ($sortedScores as $index=>$player) {
         $leagueScore = Score::query()
           ->where('scoreable_type', 'league')
           ->where('scoreable_id', $league->id)
@@ -76,15 +76,7 @@ class LeagueController extends Api
           ->latest()
           ->first();
 
-        $leagueScore->update(['score' => $leagueScore->score + $options[0]]);
-
-        if ($index + 1 < count($sortedScores) && $player['gameScore'] === $sortedScores[$index + 1]['gameScore']) {
-          unset($options[1]);
-          $options = array_values($options);
-        } else {
-          unset($options[0]);
-          $options = array_values($options);
-        }
+        $leagueScore->update(['score' => $leagueScore->score + $options[$index]]);
       }
 
       return League::where('participants', $league->participants)->orderBy('completed_at', 'desc')->with('scores')->get();

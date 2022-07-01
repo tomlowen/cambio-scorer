@@ -13,27 +13,31 @@
         <b-card-body>
           <table>
             <tr>
-              <th>Name</th>
-              <th>Score</th>
+              <th class="column name-col">Name</th>
+              <th class="column total-score-col">Score</th>
             </tr>
             <tr v-for="score in league.scores" :key="score.player_name">
-              <td>{{score.player_name}}</td>
-              <td>{{score.score}}</td>
+              <td class="column name-col">{{score.player_name}}</td>
+              <td class="column total-score-col">{{score.score}}</td>
             </tr>
           </table>
         </b-card-body>
       </b-collapse>
+
+      <b-button v-if="is_game_completed" block variant="light" class="w-100 mt-5" @click="startNewGame">
+        Play another game
+      </b-button>
     </b-card>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
 
   computed: {
-    ...mapGetters(["rounds", "players", 'leagues']),
+    ...mapGetters(["rounds", "players", 'leagues', 'is_game_completed']),
 
     leagueIds() {
       return this.leagues.map((l)=> l.id)
@@ -51,6 +55,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(["startNewGame"]),
+
     toggleAccordian(id) {
       this.openAccordian = id;
     }
