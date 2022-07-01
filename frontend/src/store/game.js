@@ -1,3 +1,4 @@
+import $helpers from '../util/helpers';
 import axios from 'axios';
 
 const state = () => ({
@@ -39,7 +40,7 @@ const actions = {
       }
       })
       .then((response) => {
-        commit('SET_LEAGUE', response.data.data)
+        commit('SET_LEAGUES', response.data)
       })
   },
 

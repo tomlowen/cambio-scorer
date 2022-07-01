@@ -17,24 +17,28 @@ const state = () => ({
 const actions = {
   async createNewLeague(context, players) {
     const participantString = $helpers.getParticpantString(players);
-    await axios
-      .post('http://localhost:8000/api/v1/leagues', {}, {
-        params: {
-          participants: participantString
-        }
+    const scores = context.getters.players.map((p) => {
+      return {
+        'name': p.name,
+        'gameScore': p.gameScore,
+      }
+    });
+
+
+    await axios({
+      method: 'post',
+      url: 'http://localhost:8000/api/v1/leagues',
+      data: {
+        participants: participantString,
+        scores: scores,
+      }
       })
       .then((response) => context.commit('SET_LEAGUES', response.data))
       .then(()=> context.dispatch('createNewGame', null, { root: true }))
   },
 
   async updateLeague(context, league) {
-    await axios
-    .put('http://localhost:8000/api/v1/leagues' + league.id, {}, {
-      data: {
-        league: league
-      }
-    })
-    .then((response) => context.commit('SET_LEAGUES', response.data))
+    context.commit('SET_LEAGUES', league)
   },
 }
 
