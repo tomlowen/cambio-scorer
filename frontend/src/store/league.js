@@ -27,7 +27,7 @@ const actions = {
 
     await axios({
       method: 'post',
-      url: 'http://localhost:8000/api/v1/leagues',
+      url: 'https://cambio-scorer-backend.herokuapp.com/api/v1/leagues',
       data: {
         participants: participantString,
         scores: scores,

@@ -45,7 +45,7 @@ const actions = {
 
     await axios({
       method: 'put',
-      url: 'http://localhost:8000/api/v1/leagues/' + getters.leagues[0].id,
+      url: 'https://cambio-scorer-backend.herokuapp.com/api/v1/leagues/' + getters.leagues[0].id,
       data: {
         scores: scores,
       }
@@ -57,7 +57,7 @@ const actions = {
 
   async createNewGame({commit, getters}) {
     await axios
-      .post('http://localhost:8000/api/v1/games', {}, {
+      .post('https://cambio-scorer-backend.herokuapp.com/api/v1/games', {}, {
         params: {
           rounds: getters.options.rounds,
           league_id: getters.leagues[0].id
