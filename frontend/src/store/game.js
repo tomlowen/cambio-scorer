@@ -29,10 +29,10 @@ const actions = {
       }
     );
     let unique = new Set(scores);
-    
-    if (unique.size != scores.length) {
-      return
-    }
+
+    // if (unique.size != scores.length) {
+    //   return
+    // }
 
      scores = getters.players.map((p) => {
       return {

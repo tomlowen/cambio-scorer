@@ -1,7 +1,6 @@
 <template>
   <div class="w-100">
-    <h1 class="py-3" v-if="game.completed_at">!! Decider !!</h1>
-    <h1 class="py-3" v-else>Round {{game.current_round}}</h1>
+    <h1 class="py-3">Round {{game.current_round}}</h1>
     <div v-for="player in players" :key="player.name">
       <b-card class="mb-3">
           <div class="player-score-card">
@@ -14,7 +13,6 @@
       </b-card>
       </div>
     <b-button class="w-100 py-2 my-3" block v-if="game.current_round < game.rounds" id="show-btn" @click="$bvModal.show('round-input-modal')">Add Round {{game.current_round}} scores</b-button>
-    <b-button class="w-100 py-2 my-3" block v-if="game.completed_at" id="show-btn" @click="$bvModal.show('round-input-modal')">Add Decider {{game.current_round}} scores</b-button>
     <b-button class="w-100 py-2 my-3" block v-else @click="$bvModal.show('round-input-modal')">Add final round scores</b-button>
     <round-input-modal></round-input-modal>
   </div>

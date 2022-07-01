@@ -67,6 +67,8 @@ class LeagueController extends Api
       $sortedScores = $request->scores;
 
       usort($sortedScores, function ($a, $b) { return $a['gameScore'] <=> $b['gameScore']; });
+      $map = array_map(function ($a) { return $a['gameScore'];}, $sortedScores);
+      $uniqueScores = array_unique($map);
 
       foreach ($sortedScores as $index=>$player) {
         $leagueScore = Score::query()
@@ -76,7 +78,8 @@ class LeagueController extends Api
           ->latest()
           ->first();
 
-        $leagueScore->update(['score' => $leagueScore->score + $options[$index]]);
+        $rank = array_search($player['gameScore'], $uniqueScores);
+        $leagueScore->update(['score' => $leagueScore->score + $options[$rank]]);
       }
 
       return League::where('participants', $league->participants)->orderBy('completed_at', 'desc')->with('scores')->get();
