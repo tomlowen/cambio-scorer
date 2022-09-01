@@ -19,9 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->name('api.')->namespace('Api')->group(function () {
-  Route::apiResources([
-    'leagues' => 'LeagueController',
-    'games' => 'GameController',
-    'rounds' => 'RoundController',
-  ]);
+    Route::apiResources([
+        'leagues' => 'LeagueController',
+        'games' => 'GameController',
+        'rounds' => 'RoundController',
+    ]);
 });

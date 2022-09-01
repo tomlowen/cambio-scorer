@@ -15,13 +15,13 @@ class Game extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-      'game_type',
-      'league_id',
-      'participants',
-      'rounds',
-      'current_round',
-      'is_50_reached',
-      'completed_at',
+        'game_type',
+        'league_id',
+        'participants',
+        'rounds',
+        'current_round',
+        'is_50_reached',
+        'completed_at',
     ];
 
     /**
@@ -37,8 +37,6 @@ class Game extends Model
      */
     public function scores()
     {
-      return $this->morphMany(Score::class, 'scoreable');
+        return $this->morphMany(Score::class, 'scoreable');
     }
-
-
 }

@@ -15,10 +15,10 @@ class League extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-      'game_type',
-      'participants',
-      'completed_at',
-  ];
+        'game_type',
+        'participants',
+        'completed_at',
+    ];
 
     /**
      * Get the games for the league.
@@ -33,6 +33,6 @@ class League extends Model
      */
     public function scores()
     {
-      return $this->morphMany(Score::class, 'scoreable');
+        return $this->morphMany(Score::class, 'scoreable');
     }
 }

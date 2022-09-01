@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rounds', function (Blueprint $table) {
-          $table->id();
-          $table->foreignId('game_id')->constrained();
-          $table->timestamps();
+            $table->id();
+            $table->foreignId('game_id')->constrained();
+            $table->timestamps();
         });
     }
 

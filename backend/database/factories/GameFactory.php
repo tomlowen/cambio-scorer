@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class GameFactory extends Factory
 {
-  protected $leaguePlayers = [
-    'andyemilyfrankietom',
-    'andyemily',
-    'frankietom',
-  ];
+    protected $leaguePlayers = [
+        'andyemilyfrankietom',
+        'andyemily',
+        'frankietom',
+    ];
 
     /**
      * Define the model's default state.
@@ -22,11 +22,11 @@ class GameFactory extends Factory
      */
     public function definition()
     {
-      return [
-        'league_id' => $this->faker->numberBetween(1,5),
-        'game_type' => 'cambio',
-        'rounds' => $this->faker->numberBetween(3,5),
-        'is_50_reached' => $this->faker->boolean(),
-      ];
+        return [
+            'league_id' => $this->faker->numberBetween(1, 5),
+            'game_type' => 'cambio',
+            'rounds' => $this->faker->numberBetween(3, 5),
+            'is_50_reached' => $this->faker->boolean(),
+        ];
     }
 }

@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class LeagueFactory extends Factory
 {
     protected $leaguePlayers = [
-      'andyemilyfrankietom',
-      'andyemily',
-      'frankietom',
+        'andyemilyfrankietom',
+        'andyemily',
+        'frankietom',
     ];
 
     /**
@@ -22,9 +22,9 @@ class LeagueFactory extends Factory
      */
     public function definition()
     {
-      return [
-        'game_type' => 'cambio',
-        'participants' => $this->faker->randomElement($this->leaguePlayers),
-      ];
+        return [
+            'game_type' => 'cambio',
+            'participants' => $this->faker->randomElement($this->leaguePlayers),
+        ];
     }
 }

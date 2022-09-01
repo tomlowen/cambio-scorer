@@ -21,7 +21,7 @@ class GameController extends Api
     /**
      * Display a listing of the selected resource.
      *
-     * @param Game $game
+     * @param  Game  $game
      * @return \Illuminate\Http\Response
      */
     public function show(Game $game)
@@ -37,19 +37,18 @@ class GameController extends Api
      */
     public function store(Request $request)
     {
-      $lastGame = Game::where('league_id', $request->league_id)->latest();
-      if($lastGame->exists() && $lastGame->where('completed_at', null)->exists()) {
+        $lastGame = Game::where('league_id', $request->league_id)->latest();
+        if ($lastGame->exists() && $lastGame->where('completed_at', null)->exists()) {
+            return new GameResource($lastGame->first());
+        }
 
-        return new GameResource($lastGame->first());
-      }
+        $newGame = Game::create([
+            'league_id' => $request->league_id,
+            'rounds' => $request->rounds,
+            'current_round' => 1,
+        ]);
 
-      $newGame = Game::create([
-        'league_id' => $request->league_id,
-        'rounds' => $request->rounds,
-        'current_round' => 1,
-      ]);
-
-      return new GameResource($newGame);
+        return new GameResource($newGame);
     }
 
     /**
@@ -60,9 +59,8 @@ class GameController extends Api
      */
     public function complete(Request $request)
     {
-      return Game::where('id', $request->id)->update(['is_complete' => true]);
+        return Game::where('id', $request->id)->update(['is_complete' => true]);
     }
 
     //endpoint for when 50 is reached
-
 }
